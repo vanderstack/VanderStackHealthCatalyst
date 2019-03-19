@@ -1,6 +1,9 @@
 <template>
     <require from="../../person-editor/person-editor"></require>
-    <person-editor
+    <require from="../../person-search/person-search"></require>
+    <person-search
+        on-search.call="onSearch(newSearch)"
         person-name.two-way="personName"
-    ></person-editor>
+    ></person-search>
+    <person-editor person-name.two-way="personName"></person-editor>
 </template>
