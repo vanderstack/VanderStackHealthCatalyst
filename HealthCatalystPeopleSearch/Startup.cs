@@ -2,8 +2,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.IO.Compression;
+using VanderStack.HealthCatalystPeopleSearch.PersonFeature;
 
 namespace VanderStack.HealthCatalystPeopleSearch
 {
@@ -19,11 +23,22 @@ namespace VanderStack.HealthCatalystPeopleSearch
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+			// Heads Up! the connection string should not be committed to source control.
+			// This is done for simplicity of code sharing only.
+			// In production this should come from an environment variable or a secrets vault.
+			var connectionString = @"Server=(localdb)\mssqllocaldb;Database=VanderStackHealthCatalyst;Trusted_Connection=True;ConnectRetryCount=0";
 
-            // Add response compression middleware using gzip
-            services.Configure<GzipCompressionProviderOptions>(options => options.Level = System.IO.Compression.CompressionLevel.Optimal);
-            services.AddResponseCompression();
+			services
+				.AddOptions()
+				.AddDbContext<PersonDatabaseContext>(options =>
+					options.UseSqlServer(connectionString)
+				)
+				.Configure<GzipCompressionProviderOptions>(options =>
+					options.Level = CompressionLevel.Optimal
+				)
+				.AddResponseCompression()
+				.AddMvc()
+			;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +60,25 @@ namespace VanderStack.HealthCatalystPeopleSearch
             app.UseResponseCompression();
 
             app.UseStaticFiles();
+
+			// Initialize the database for first time use
+			try
+            {
+				var serviceScopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+				using (var serviceScope = serviceScopeFactory.CreateScope())
+                {
+                    serviceScope
+						.ServiceProvider
+						.GetService<PersonDatabaseContext>()
+                        .Database
+						.Migrate()
+					;
+                }
+            }
+            catch (Exception e)
+            {
+				Console.WriteLine(e.ToString());
+            }
 
             app.UseMvc(routes =>
             {
