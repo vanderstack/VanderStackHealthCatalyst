@@ -30,6 +30,11 @@ namespace VanderStack.HealthCatalystPeopleSearch
 
 			services
 				.AddOptions()
+				.Configure<PersonSearchOptions>(options =>
+					// todo: this can also come from environment variables
+					// or a settings file depending on our deployment model
+					options.MaxNumberOfResults = 100
+				)
 				.AddDbContext<PersonDatabaseContext>(options =>
 					options.UseSqlServer(connectionString)
 				)
