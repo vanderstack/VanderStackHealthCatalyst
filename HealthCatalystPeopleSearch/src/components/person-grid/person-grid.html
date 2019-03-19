@@ -1,0 +1,42 @@
+<template>
+    <require from="./person-grid.css"></require>
+    <p if.bind="isLoading"><em>Loading...</em></p>
+    <p if.bind="isLoading && isRequestSlow"><em>Thank you for your patience, loading your results is taking longer than usual.</em></p>
+    <p if.bind="!isLoading && (!personSet || personSet.length === 0)"><em>No People Loaded.</em></p>
+    <table if.bind="!isLoading && (personSet && personSet.length !== 0)" class="table person-grid">
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>Age</th>
+                <th>Interests</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--
+                here we are binding input provided by the end user. If any of our
+                end users are not internal/trusted we should sanatize the values
+                to prevent script injection attacks.
+            -->
+            <tr repeat.for="person of personSet">
+                <td>
+                    <!--
+                        in a more robust implementation we would address edge cases.
+                        while testing i found that the photoUrl 'foo.com' resulted
+                        in the image being broken, but did not crash the application.
+                        
+                        for records where no image is on file we instead use a public domain stock photo.
+                    -->
+                    <img style="max-height: 90px; max-width: 90px; border-radius: 50%;" src="${(person.photoUrl !== '' ? person.photoUrl : stockPhotoUrl) & oneTime}">
+                </td>
+                <td>${ person.firstName }</td>
+                <td>${ person.lastName }</td>
+                <td>${ person.address }</td>
+                <td>${ person.age }</td>
+                <td>${ formatInterests(person.interestSet) }</td>
+            </tr>
+        </tbody>
+    </table>
+</template>

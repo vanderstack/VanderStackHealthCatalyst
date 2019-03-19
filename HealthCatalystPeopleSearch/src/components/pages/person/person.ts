@@ -1,4 +1,4 @@
-import { bindable, observable } from "aurelia-framework";
+import { bindable, observable, computedFrom } from "aurelia-framework";
 import { PersonModel } from "./PersonModel";
 import { PersonSearchRequest } from "../../person-search/PersonSearchRequest";
 
@@ -8,6 +8,18 @@ export class Person {
     /** The set of people currently being manipulated. */
     @bindable()
     public personSet: Array<PersonModel> = [];
+
+    /** Indicates there is an active request to load data. */
+    @computedFrom('activeSearch', 'activeSearch.isComplete')
+    public get isLoading(): boolean {
+        return this.activeSearch !== undefined && !this.activeSearch.isComplete;
+    }
+
+    /** Indicates that an active request to load data is running slowly. */
+    @computedFrom('activeSearch', 'activeSearch.isSlow')
+    public get isRequestSlow(): boolean {
+        return this.activeSearch !== undefined && this.activeSearch.isSlow;
+    }
 
     /** The currently running person search. */
     @bindable()
