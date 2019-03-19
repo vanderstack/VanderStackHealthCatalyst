@@ -39,7 +39,7 @@ Seed Person Patrick (Zach's Dog):
 Gracefully Handle Latency:  
 ![Gracefully Handle Latency](https://raw.githubusercontent.com/vanderstack/VanderStackHealthCatalyst/master/HealthCatalystPeopleSearch/static/Demo/latency.gif)  
   
-**Bonus** Validation:  
+**Bonus Feature**: Demonstrate Basic Validation:  
 ![Seed Data with Validation Errors](https://raw.githubusercontent.com/vanderstack/VanderStackHealthCatalyst/master/HealthCatalystPeopleSearch/static/Demo/validation.gif)  
   
 # Technical Requirements
