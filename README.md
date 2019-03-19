@@ -28,19 +28,19 @@ Solution should either seed data or provide a way to enter new users or both.
 Simulate search being slow and have the UI gracefully handle the delay.  
   
 Filtering People by partial match to first or last name:  
-![Filtering People](//raw.githubusercontent.com/vanderstack/VanderStackHealthCatalyst/master/HealthCatalystPeopleSearch/static/Demo/filter.gif)  
+![Filtering People](https://raw.githubusercontent.com/vanderstack/VanderStackHealthCatalyst/master/HealthCatalystPeopleSearch/static/Demo/filter.gif)  
   
 Seed Person Zachary:  
-![Seed Person](//raw.githubusercontent.com/vanderstack/VanderStackHealthCatalyst/master/HealthCatalystPeopleSearch/static/Demo/seed-zach.gif)  
+![Seed Person](https://raw.githubusercontent.com/vanderstack/VanderStackHealthCatalyst/master/HealthCatalystPeopleSearch/static/Demo/seed-zach.gif)  
   
 Seed Person Patrick (Zach's Dog):  
-![Seed Dog](//raw.githubusercontent.com/vanderstack/VanderStackHealthCatalyst/master/HealthCatalystPeopleSearch/static/Demo/seed-patrick.gif)  
+![Seed Dog](https://raw.githubusercontent.com/vanderstack/VanderStackHealthCatalyst/master/HealthCatalystPeopleSearch/static/Demo/seed-patrick.gif)  
   
 Gracefully Handle Latency:  
-![Gracefully Handle Latency](//raw.githubusercontent.com/vanderstack/VanderStackHealthCatalyst/master/HealthCatalystPeopleSearch/static/Demo/latency.gif)  
+![Gracefully Handle Latency](https://raw.githubusercontent.com/vanderstack/VanderStackHealthCatalyst/master/HealthCatalystPeopleSearch/static/Demo/latency.gif)  
   
 **Bonus** Validation:  
-![Seed Data with Validation Errors](//raw.githubusercontent.com/vanderstack/VanderStackHealthCatalyst/master/HealthCatalystPeopleSearch/static/Demo/validation.gif)  
+![Seed Data with Validation Errors](https://raw.githubusercontent.com/vanderstack/VanderStackHealthCatalyst/master/HealthCatalystPeopleSearch/static/Demo/validation.gif)  
   
 # Technical Requirements
 
@@ -49,7 +49,7 @@ Use an ORM framework to talk to the database.
 Unit Tests for appropriate parts of the application.  
   
 Unit Tests Passing:  
-![Successful Tests](//raw.githubusercontent.com/vanderstack/VanderStackHealthCatalyst/master/HealthCatalystPeopleSearch/static/Demo/tests.gif)  
+![Successful Tests](https://raw.githubusercontent.com/vanderstack/VanderStackHealthCatalyst/master/HealthCatalystPeopleSearch/static/Demo/tests.gif)  
   
 # Assignment Background
 
