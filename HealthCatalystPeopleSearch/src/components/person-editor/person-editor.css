@@ -1,0 +1,13 @@
+div.person-editor > div:not(.interests) {
+    display: table-row;
+}
+div.person-editor div label {
+    display: table-cell;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+div.person-editor div input {
+    display: table-cell;
+    padding-right: 10px;
+    width: 300%;
+}

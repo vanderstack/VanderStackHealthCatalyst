@@ -1,0 +1,64 @@
+<template>
+    <require from="../tag-input/tag-input"></require>
+    <require from="./person-editor.css"></require>
+    <input
+        if.bind="!person"
+        type="button"
+        class="button"
+        value="Add New"
+        click.delegate="showEditor()"
+    />
+    <div if.bind="person" style="margin-bottom: 10px;" class="person-editor">
+        <h3>Add New Person</h3>
+        <div>
+            <label for="photo">Photo Url:</label>
+            <input type="text" name="photo" value.bind="person.PhotoUrl" />
+        </div>
+        <div>
+            <label for="firstname">First Name:</label>
+            <input type="text" value.bind="person.firstName" name="firstname" />
+        </div>
+        <div>
+            <label for="lastname">Last Name:</label>
+            <input type="text" value.bind="person.lastName" name="lastname" />
+        </div>
+        <div>
+            <label for="address">Address:</label>
+            <input type="text" value.bind="person.address" name="address" />
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input type="text" value.bind="person.age" name="age" />
+        </div>
+        <div class="interests">
+            <label for="interests">Interests:</label>
+            <tag-input
+                name="interests"
+                tags.bind="tags"
+                on-changed.call="interestSetChanged(value)"
+            >
+            </tag-input>
+        </div>
+    </div>
+    <input
+        if.bind="person"
+        type="button"
+        class="button"
+        value="Cancel"
+        click.delegate="hideEditor()"
+    />
+    <input
+        if.bind="person && !isSaving"
+        type="button"
+        class="button"
+        value="Add Person"
+        click.delegate="onAddClick()"
+    />
+    <span if.bind="isSaving">Adding new person...</span>
+    <div
+        if.bind="errors.length"
+        repeat.for="error of errors"
+    >
+        ${error}
+    </div>
+</template>
