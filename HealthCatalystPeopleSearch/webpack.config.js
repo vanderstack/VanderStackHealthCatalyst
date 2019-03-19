@@ -77,7 +77,13 @@ module.exports = (env, argv) => {
                 { from: resolve('../static/favicon.ico'), to: resolve('favicon.ico') },
                 { from: resolve('../static/loading.css'), to: resolve('dist/loading.css') },
                 { from: resolve('../static/webfonts'), to: resolve('dist/webfonts') },
-                { from: resolve('../static/blank-profile.png'), to: resolve('blank-profile.png') }
+                { from: resolve('../static/blank-profile.png'), to: resolve('blank-profile.png') },
+                { from: resolve('../static/Demo/tests.gif'), to: resolve('Demo/tests.gif') },
+                { from: resolve('../static/Demo/filter.gif'), to: resolve('Demo/filter.gif') },
+                { from: resolve('../static/Demo/latency.gif'), to: resolve('Demo/latency.gif') },
+                { from: resolve('../static/Demo/validation.gif'), to: resolve('Demo/validation.gif') },
+                { from: resolve('../static/Demo/seed-zach.gif'), to: resolve('Demo/seed-zach.gif') },
+                { from: resolve('../static/Demo/seed-patrick.gif'), to: resolve('Demo/seed-patrick.gif') }
             ], { debug: 'info' })
         ]
     }];

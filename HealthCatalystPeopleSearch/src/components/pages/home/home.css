@@ -1,0 +1,39 @@
+li.indent-one {
+    margin-left: 25px;
+}
+li.indent-two {
+    margin-left: 50px;
+}
+
+.popup-container .popup {
+    color: blue;
+}
+
+.popup-container .popup span {
+    display: none;
+}
+
+.popup-container .popup:hover {
+    /*position: relative;*/
+}
+
+/* the IE correction rule */
+.popup-container .popup:hover {
+    text-indent: 0; /* added the default value */
+    /*position: relative;*/
+}
+
+.popup-container .popup:hover span {
+    display: block;
+    position: absolute;
+    top: 10vh;
+    left: 80px;
+    /*width: 320px;*/
+    margin: 0px;
+    padding: 10px;
+    color: #335500;
+    font-weight: normal;
+    background: #e5e5e5;
+    text-align: left;
+    border: 1px solid #666;
+}

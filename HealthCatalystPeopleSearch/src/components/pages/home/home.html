@@ -1,17 +1,28 @@
 <template>
-    <h1>Hello, world!</h1>
-    <p>Welcome to your new single-page application, built with:</p>
-    <ul>
-        <li><a href="https://get.asp.net/">ASP.NET Core 2.1 (LTS)</a> and <a href="https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx">C#</a> for cross-platform server-side code</li>
-        <li><a href="http://aurelia.io/">Aurelia</a> and <a href="http://www.typescriptlang.org/">TypeScript</a> for client-side code</li>
-        <li><a href="https://webpack.github.io/">Webpack 4</a> for building and bundling client-side resources</li>
-        <li><a href="http://getbootstrap.com/">Bootstrap 4</a> for layout and styling</li>
-        <li><a href="https://fontawesome.com//">Fontawesome 5</a> for icons</li>
+    <require from="./home.css"></require>
+    <h1>Hello, Health Catalyst!</h1>
+    <p>Welcome to the <strong>People Search Sample Application</strong>, built to meet your technical requirements:</p>
+    <ul class="popup-container">
+        <li><a href="https://get.asp.net/" target="_blank">ASP.NET Core</a> and <a href="https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx">C#</a> for cross-platform server-side code</li>
+        <li><a href="http://aurelia.io/" target="_blank">Aurelia</a> and <a href="http://www.typescriptlang.org/" target="_blank">TypeScript</a> for client-side code</li>
+        <li>Uses the ORM framework <a href="https://docs.microsoft.com/en-us/ef/core/" target="_blank">Entity Framework Core</a> to talk to the database.</li>
+        <li><span class="popup">Unit Tests<span><img src="/Demo/tests.gif"></span></span> for appropriate parts of the application.</li>
     </ul>
-    <p>To help you get started, we've also set up:</p>
-    <ul>
-        <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-        <li><strong>Webpack dev middleware</strong>. In development mode, there's no need to run the <code>webpack</code> build tool. Your client-side resources are dynamically built on demand. Updates are available as soon as you modify any file.</li>
-        <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and the <code>webpack</code> build tool produces minified static CSS and JavaScript files.</li>
+    <p>Business Requirements:</p>
+    <ul class="popup-container">
+        <li><span class="popup">The application accepts search input in a text box<span><img src="/Demo/filter.gif"></span></span> and then displays in a pleasing style a list of people where any part of their first or last name matches what was typed in the search box (displaying at least name, address, age, interests, and a picture).</li>
+        <li class="indent-one">The search input text box can be found by clicking the People Search menu entry.</li>
+        <li class="indent-one">As search criteria is entered we display the list of people in a pleasing style.</li>
+        <li class="indent-two">This is done in realtime for ideal user experience while using a debounce to avoid overloading servers.</li>
+        <li class="indent-two">People are shown where any part of their first or last name matches what was typed in the search box.</li>
+        <li class="indent-two">The people list displays name, address, age, interests, and a picture.</li>
+        <li style="margin-top: 5px;">Solution should either seed data or <span class="popup">provide a way to enter new users<span><img src="/Demo/seed-zach.gif"></span></span> or both.</li>
+        <li class="indent-one"><span class="popup">The Add User functionality<span><img src="/Demo/seed-patrick.gif"></span></span> can be found by clicking the People Search menu entry.</li>
+        <li class="indent-one">This feature was put here because it made sense that when the user could not find a person they may wish to add them.</li>
+        <li class="indent-one">Adding a new person automatically searches for them.</li>
+        <li style="margin-top: 5px;"><span class="popup">Simulate search being slow<span><img src="/Demo/latency.gif"></span></span> and have the UI gracefully handle the delay.</li>
+        <li class="indent-one">Simulating network functionality being slow will result in the People Search loading message being updated.</li>
+        <li class="indent-one">The threshold for a slow network response is currently set to 300ms. This threshold can be trivially changed in PersonSearchRequest.ts and would ideally be part of a configuration.</li>
+        <li style="margin-top: 5px;"><strong>Bonus Feature:</strong><span class="popup"> Demonstrate Basic Validation.<span><img src="/Demo/validation.gif"></span></span></li>
     </ul>
 </template>
