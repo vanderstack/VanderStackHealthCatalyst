@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -20,14 +19,14 @@ namespace VanderStack.HealthCatalystPeopleSearch.PersonFeature
 		/// in the constructor
 		/// </summary>
 		/// <param name="databaseContext">The database context for working with people</param>
-		/// <param name="personSearchOptions">The options for how the Person Search should be configured</param>
+		/// <param name="appSettings">The settings for how the application is configured</param>
 		public PersonController(
 			PersonDatabaseContext databaseContext
-			, IOptionsSnapshot<PersonSearchOptions> personSearchOptions
+			, IOptionsSnapshot<AppSettings> appSettings
 		)
 		{
 			DatabaseContext = databaseContext;
-			PersonSearchOptions = personSearchOptions;
+			AppSettings = appSettings;
 		}
 
 		/// <summary>
@@ -36,9 +35,9 @@ namespace VanderStack.HealthCatalystPeopleSearch.PersonFeature
 		protected PersonDatabaseContext DatabaseContext { get; }
 
 		/// <summary>
-		/// The options for how the Person Search should be configured
+		/// The settings for how the application is configured
 		/// </summary>
-		protected IOptionsSnapshot<PersonSearchOptions> PersonSearchOptions { get; }
+		protected IOptionsSnapshot<AppSettings> AppSettings { get; }
 
 		/// <summary>
 		/// Creates a new Person
@@ -84,7 +83,7 @@ namespace VanderStack.HealthCatalystPeopleSearch.PersonFeature
 			// remove whitespace and ignore capitalization
 			personName = personName.Trim().ToLower();
 
-			var maxNumberOfResults = PersonSearchOptions.Value.MaxNumberOfResults;
+			var maxNumberOfResults = AppSettings.Value.PersonSearchMaxResults;
 
 			var searchResultSet =
 				(
@@ -127,27 +126,5 @@ namespace VanderStack.HealthCatalystPeopleSearch.PersonFeature
 
 			return Ok(new PersonSearchResult { PersonSet = searchResultSet });
 		}
-	}
-
-	/// <summary>
-	/// Encapsulates the results of a person search.
-	/// </summary>
-	public class PersonSearchResult
-	{
-		/// <summary>
-		/// The set of people found as the result of the search.
-		/// </summary>
-		public IEnumerable<PersonModel> PersonSet { get; set; }
-	}
-
-	/// <summary>
-	/// Encapsulates the results of a person validation.
-	/// </summary>
-	public class PersonValidationResult
-	{
-		/// <summary>
-		/// The set of validation errors for the person.
-		/// </summary>
-		public IEnumerable<string> ValidationErrors { get; set; }
 	}
 }

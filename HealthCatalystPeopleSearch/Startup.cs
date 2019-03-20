@@ -5,13 +5,14 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
 using System.IO.Compression;
 using VanderStack.HealthCatalystPeopleSearch.PersonFeature;
 
 namespace VanderStack.HealthCatalystPeopleSearch
 {
-    public class Startup
+	public class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -23,29 +24,20 @@ namespace VanderStack.HealthCatalystPeopleSearch
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-			var databaseId = "VanderStackHealthCatalyst";
-			var useInMemoryDb = true;
-			var useSqlServerDb = !useInMemoryDb;
-
 			services
 				.AddOptions()
-				.Configure<PersonSearchOptions>(options =>
-					// todo: this can also come from environment variables
-					// or a settings file depending on our deployment model
-					options.MaxNumberOfResults = 100
-				)
+				.Configure<AppSettings>(Configuration)
 				.AddDbContext<PersonDatabaseContext>(options => {
-					if (useSqlServerDb)
+					var appSettings = new AppSettings();
+					Configuration.Bind(appSettings);
+
+					if (appSettings.UseSqlDatabase)
 					{
-						// Heads Up! the connection string should not be committed to source control.
-						// This is done for simplicity of code sharing only.
-						// In production this should come from an environment variable or a secrets vault.
-						var connectionString = $@"Server=(localdb)\mssqllocaldb;Database={databaseId};Trusted_Connection=True;ConnectRetryCount=0";
-						options.UseSqlServer(connectionString);
+						options.UseSqlServer(appSettings.SqlDatabaseConnectionString);
 					}
-					else if (useInMemoryDb)
+					else if (appSettings.UseInMemoryDatabase)
 					{
-						options.UseInMemoryDatabase(databaseId);
+						options.UseInMemoryDatabase(appSettings.InMemoryDatabaseName);
 					}
 				})
 				.Configure<GzipCompressionProviderOptions>(options =>
@@ -76,25 +68,28 @@ namespace VanderStack.HealthCatalystPeopleSearch
 
             app.UseStaticFiles();
 
-			// Initialize the database for first time use
-			try
-            {
-				var serviceScopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
-				using (var serviceScope = serviceScopeFactory.CreateScope())
-                {
-                    serviceScope
-						.ServiceProvider
-						.GetService<PersonDatabaseContext>()
-                        .Database
-						.Migrate()
-					;
-                }
-            }
-            catch (Exception e)
-            {
-				Console.WriteLine(e.ToString());
-            }
-
+			// When configured initialize the database for first time use
+			var appSettings = app.ApplicationServices.GetRequiredService<IOptions<AppSettings>>().Value;
+			if (appSettings.UseSqlDatabase && appSettings.SeedSqlDatabaseOnStart)
+			{
+				try
+				{
+					var serviceScopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+					using (var serviceScope = serviceScopeFactory.CreateScope())
+					{
+						serviceScope
+							.ServiceProvider
+							.GetService<PersonDatabaseContext>()
+							.Database
+							.Migrate()
+						;
+					}
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
