@@ -45,22 +45,22 @@ namespace VanderStack.HealthCatalystPeopleSearch.Tests
 			databaseContext.PersonSet.Add(testPerson);
 			databaseContext.SaveChanges();
 
-			var personSearchOptionsMock = new Mock<IOptionsSnapshot<PersonSearchOptions>>();
+			var appSettingsMock = new Mock<IOptionsSnapshot<AppSettings>>();
 
-			personSearchOptionsMock
+			appSettingsMock
 				.Setup(personSearchOptions =>
 					personSearchOptions.Value
 				)
-				.Returns(new PersonSearchOptions
+				.Returns(new AppSettings
 				{
-					MaxNumberOfResults = 100
+					PersonSearchMaxResults = 100
 				})
 			;
 
 			var controller =
 				new PersonController(
 					databaseContext: databaseContext
-					, personSearchOptions: personSearchOptionsMock.Object
+					, appSettings: appSettingsMock.Object
 				)
 			;
 
@@ -111,22 +111,22 @@ namespace VanderStack.HealthCatalystPeopleSearch.Tests
 			databaseContext.PersonSet.Add(testPerson);
 			databaseContext.SaveChanges();
 
-			var personSearchOptionsMock = new Mock<IOptionsSnapshot<PersonSearchOptions>>();
+			var appSettingsMock = new Mock<IOptionsSnapshot<AppSettings>>();
 
-			personSearchOptionsMock
+			appSettingsMock
 				.Setup(personSearchOptions =>
 					personSearchOptions.Value
 				)
-				.Returns(new PersonSearchOptions
+				.Returns(new AppSettings
 				{
-					MaxNumberOfResults = 100
+					PersonSearchMaxResults = 100
 				})
 			;
 
 			var controller =
 				new PersonController(
 					databaseContext: databaseContext
-					, personSearchOptions: personSearchOptionsMock.Object
+					, appSettings: appSettingsMock.Object
 				)
 			;
 
@@ -188,22 +188,22 @@ namespace VanderStack.HealthCatalystPeopleSearch.Tests
 			databaseContext.PersonSet.Add(testPerson2);
 			databaseContext.SaveChanges();
 
-			var personSearchOptionsMock = new Mock<IOptionsSnapshot<PersonSearchOptions>>();
+			var appSettingsMock = new Mock<IOptionsSnapshot<AppSettings>>();
 
-			personSearchOptionsMock
+			appSettingsMock
 				.Setup(personSearchOptions =>
 					personSearchOptions.Value
 				)
-				.Returns(new PersonSearchOptions
+				.Returns(new AppSettings
 				{
-					MaxNumberOfResults = 100
+					PersonSearchMaxResults = 100
 				})
 			;
 
 			var controller =
 				new PersonController(
 					databaseContext: databaseContext
-					, personSearchOptions: personSearchOptionsMock.Object
+					, appSettings: appSettingsMock.Object
 				)
 			;
 
@@ -266,24 +266,24 @@ namespace VanderStack.HealthCatalystPeopleSearch.Tests
 			databaseContext.PersonSet.Add(testPerson2);
 			databaseContext.SaveChanges();
 
-			var personSearchOptionsMock = new Mock<IOptionsSnapshot<PersonSearchOptions>>();
+			var appSettingsMock = new Mock<IOptionsSnapshot<AppSettings>>();
 
 			var testNumberOfResults = 1;
 
-			personSearchOptionsMock
+			appSettingsMock
 				.Setup(personSearchOptions =>
 					personSearchOptions.Value
 				)
-				.Returns(new PersonSearchOptions
+				.Returns(new AppSettings
 				{
-					MaxNumberOfResults = testNumberOfResults
+					PersonSearchMaxResults = testNumberOfResults
 				})
 			;
 
 			var controller =
 				new PersonController(
 					databaseContext: databaseContext
-					, personSearchOptions: personSearchOptionsMock.Object
+					, appSettings: appSettingsMock.Object
 				)
 			;
 
@@ -333,22 +333,22 @@ namespace VanderStack.HealthCatalystPeopleSearch.Tests
 			databaseContext.PersonSet.Add(testPerson1);
 			databaseContext.SaveChanges();
 
-			var personSearchOptionsMock = new Mock<IOptionsSnapshot<PersonSearchOptions>>();
+			var appSettingsMock = new Mock<IOptionsSnapshot<AppSettings>>();
 
-			personSearchOptionsMock
+			appSettingsMock
 				.Setup(personSearchOptions =>
 					personSearchOptions.Value
 				)
-				.Returns(new PersonSearchOptions
+				.Returns(new AppSettings
 				{
-					MaxNumberOfResults = 100
+					PersonSearchMaxResults = 100
 				})
 			;
 
 			var controller =
 				new PersonController(
 					databaseContext: databaseContext
-					, personSearchOptions: personSearchOptionsMock.Object
+					, appSettings: appSettingsMock.Object
 				)
 			;
 
@@ -398,22 +398,22 @@ namespace VanderStack.HealthCatalystPeopleSearch.Tests
 			databaseContext.PersonSet.Add(testPerson1);
 			databaseContext.SaveChanges();
 
-			var personSearchOptionsMock = new Mock<IOptionsSnapshot<PersonSearchOptions>>();
+			var appSettingsMock = new Mock<IOptionsSnapshot<AppSettings>>();
 
-			personSearchOptionsMock
+			appSettingsMock
 				.Setup(personSearchOptions =>
 					personSearchOptions.Value
 				)
-				.Returns(new PersonSearchOptions
+				.Returns(new AppSettings
 				{
-					MaxNumberOfResults = 100
+					PersonSearchMaxResults = 100
 				})
 			;
 
 			var controller =
 				new PersonController(
 					databaseContext: databaseContext
-					, personSearchOptions: personSearchOptionsMock.Object
+					, appSettings: appSettingsMock.Object
 				)
 			;
 
@@ -466,22 +466,22 @@ namespace VanderStack.HealthCatalystPeopleSearch.Tests
 			databaseContext.PersonSet.Add(testPerson1);
 			databaseContext.SaveChanges();
 
-			var personSearchOptionsMock = new Mock<IOptionsSnapshot<PersonSearchOptions>>();
+			var appSettingsMock = new Mock<IOptionsSnapshot<AppSettings>>();
 
-			personSearchOptionsMock
+			appSettingsMock
 				.Setup(personSearchOptions =>
 					personSearchOptions.Value
 				)
-				.Returns(new PersonSearchOptions
+				.Returns(new AppSettings
 				{
-					MaxNumberOfResults = 100
+					PersonSearchMaxResults = 100
 				})
 			;
 
 			var controller =
 				new PersonController(
 					databaseContext: databaseContext
-					, personSearchOptions: personSearchOptionsMock.Object
+					, appSettings: appSettingsMock.Object
 				)
 			;
 
@@ -534,22 +534,22 @@ namespace VanderStack.HealthCatalystPeopleSearch.Tests
 			databaseContext.PersonSet.Add(testPerson1);
 			databaseContext.SaveChanges();
 
-			var personSearchOptionsMock = new Mock<IOptionsSnapshot<PersonSearchOptions>>();
+			var appSettingsMock = new Mock<IOptionsSnapshot<AppSettings>>();
 
-			personSearchOptionsMock
+			appSettingsMock
 				.Setup(personSearchOptions =>
 					personSearchOptions.Value
 				)
-				.Returns(new PersonSearchOptions
+				.Returns(new AppSettings
 				{
-					MaxNumberOfResults = 100
+					PersonSearchMaxResults = 100
 				})
 			;
 
 			var controller =
 				new PersonController(
 					databaseContext: databaseContext
-					, personSearchOptions: personSearchOptionsMock.Object
+					, appSettings: appSettingsMock.Object
 				)
 			;
 
@@ -594,22 +594,22 @@ namespace VanderStack.HealthCatalystPeopleSearch.Tests
 				}
 			;
 
-			var personSearchOptionsMock = new Mock<IOptionsSnapshot<PersonSearchOptions>>();
+			var appSettingsMock = new Mock<IOptionsSnapshot<AppSettings>>();
 
-			personSearchOptionsMock
+			appSettingsMock
 				.Setup(personSearchOptions =>
 					personSearchOptions.Value
 				)
-				.Returns(new PersonSearchOptions
+				.Returns(new AppSettings
 				{
-					MaxNumberOfResults = 100
+					PersonSearchMaxResults = 100
 				})
 			;
 
 			var controller =
 				new PersonController(
 					databaseContext: databaseContext
-					, personSearchOptions: personSearchOptionsMock.Object
+					, appSettings: appSettingsMock.Object
 				)
 			;
 
@@ -645,22 +645,22 @@ namespace VanderStack.HealthCatalystPeopleSearch.Tests
 				}
 			;
 
-			var personSearchOptionsMock = new Mock<IOptionsSnapshot<PersonSearchOptions>>();
+			var appSettingsMock = new Mock<IOptionsSnapshot<AppSettings>>();
 
-			personSearchOptionsMock
+			appSettingsMock
 				.Setup(personSearchOptions =>
 					personSearchOptions.Value
 				)
-				.Returns(new PersonSearchOptions
+				.Returns(new AppSettings
 				{
-					MaxNumberOfResults = 100
+					PersonSearchMaxResults = 100
 				})
 			;
 
 			var controller =
 				new PersonController(
 					databaseContext: databaseContext
-					, personSearchOptions: personSearchOptionsMock.Object
+					, appSettings: appSettingsMock.Object
 				)
 			;
 
@@ -705,22 +705,22 @@ namespace VanderStack.HealthCatalystPeopleSearch.Tests
 				}
 			;
 
-			var personSearchOptionsMock = new Mock<IOptionsSnapshot<PersonSearchOptions>>();
+			var appSettingsMock = new Mock<IOptionsSnapshot<AppSettings>>();
 
-			personSearchOptionsMock
+			appSettingsMock
 				.Setup(personSearchOptions =>
 					personSearchOptions.Value
 				)
-				.Returns(new PersonSearchOptions
+				.Returns(new AppSettings
 				{
-					MaxNumberOfResults = 100
+					PersonSearchMaxResults = 100
 				})
 			;
 
 			var controller =
 				new PersonController(
 					databaseContext: databaseContext
-					, personSearchOptions: personSearchOptionsMock.Object
+					, appSettings: appSettingsMock.Object
 				)
 			;
 
