@@ -4,7 +4,7 @@ People search sample application for Health Catalyst Senior Software Engineer us
 # Usage Instructions:
 Clone Repository  
 Within the project navigate to the directory Dist  
-**Execute vanderstack-health-catalyst-people-search-sample-app.exe**  
+**Execute VanderStackHealthCatalyst.exe**  
 or  
 :\\> dotnet run  
 Open your web browser and navigate to http://localhost:5000  
@@ -16,10 +16,7 @@ Notes: Development took place in VS2019 Community Preview, should be backward co
 :\\> dotnet test  
   
 # Deployment Instructions:
-Step 1 - :\\> dotnet publish -c Release  
-Step 2 - Within Visual Studio -> Publish self-contained x64  
-Step 3 - Copy output of bin\Release\netcoreapp2.0\publish to bin\Release\netcoreapp2.0\win-x64  
-Step 4 - Copy bin\Release\netcoreapp2.0\win-x64 to Dist  
+:\\> dotnet publish -c release -r win10-x64  
 
 # Business Requirements
 
