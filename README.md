@@ -3,11 +3,12 @@ People search sample application for Health Catalyst Senior Software Engineer us
 
 # Usage Instructions:
 Clone Repository  
-:\\> .\\Dist\\HealthCatalystPeopleSearch.exe   
+  
+:> .\\Dist\\HealthCatalystPeopleSearch.exe  
   
 or
 
-:\\> dotnet run  
+:> dotnet run  
   
 or  
 
@@ -15,7 +16,15 @@ navigate to the directory Dist and execute **HealthCatalystPeopleSearch.exe**
   
 Then open your web browser and navigate to http://localhost:5000  
   
-Notes: Development took place in VS2019 Community Preview, should be backward compatible with VS2017  
+Notes:  
+  
+Please ensure that cloning the repository, then running it directly (without any additional setup steps) will start the app properly.
+
+The requirement that the app be immediately runable after cloning the repository without any additional setup steps together with the requirement that an ORM be used resulted in needing to use an in memory database for the default ORM configuration, as I could not be confident SQL Server would be installed on the end users system and it cannot be bundled into a single executable. This configuration can be changed in Startup.cs by setting useInMemoryDb = false.  
+  
+While using the in memory database changes will not be persisted from one application instance to another.  
+  
+Development took place in VS2019 Community Preview, should be backward compatible with VS2017  
   
 # Test Instructions:  
 :\\> dotnet test  

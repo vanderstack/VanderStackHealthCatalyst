@@ -23,10 +23,9 @@ namespace VanderStack.HealthCatalystPeopleSearch
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-			// Heads Up! the connection string should not be committed to source control.
-			// This is done for simplicity of code sharing only.
-			// In production this should come from an environment variable or a secrets vault.
-			var connectionString = @"Server=(localdb)\mssqllocaldb;Database=VanderStackHealthCatalyst;Trusted_Connection=True;ConnectRetryCount=0";
+			var databaseId = "VanderStackHealthCatalyst";
+			var useInMemoryDb = true;
+			var useSqlServerDb = !useInMemoryDb;
 
 			services
 				.AddOptions()
@@ -35,9 +34,20 @@ namespace VanderStack.HealthCatalystPeopleSearch
 					// or a settings file depending on our deployment model
 					options.MaxNumberOfResults = 100
 				)
-				.AddDbContext<PersonDatabaseContext>(options =>
-					options.UseSqlServer(connectionString)
-				)
+				.AddDbContext<PersonDatabaseContext>(options => {
+					if (useSqlServerDb)
+					{
+						// Heads Up! the connection string should not be committed to source control.
+						// This is done for simplicity of code sharing only.
+						// In production this should come from an environment variable or a secrets vault.
+						var connectionString = $@"Server=(localdb)\mssqllocaldb;Database={databaseId};Trusted_Connection=True;ConnectRetryCount=0";
+						options.UseSqlServer(connectionString);
+					}
+					else if (useInMemoryDb)
+					{
+						options.UseInMemoryDatabase(databaseId);
+					}
+				})
 				.Configure<GzipCompressionProviderOptions>(options =>
 					options.Level = CompressionLevel.Optimal
 				)
