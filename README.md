@@ -3,13 +3,18 @@ People search sample application for Health Catalyst Senior Software Engineer us
 
 # Usage Instructions:
 Clone Repository  
-Within the project navigate to the directory Dist  
-**Execute VanderStackHealthCatalyst.exe**  
-or  
-:\\> dotnet run  
-Open your web browser and navigate to http://localhost:5000  
+:\\> .\\Dist\\HealthCatalystPeopleSearch.exe   
   
-    
+or
+
+:\\> dotnet run  
+  
+or  
+
+navigate to the directory Dist and execute **HealthCatalystPeopleSearch.exe**
+  
+Then open your web browser and navigate to http://localhost:5000  
+  
 Notes: Development took place in VS2019 Community Preview, should be backward compatible with VS2017  
   
 # Test Instructions:  
