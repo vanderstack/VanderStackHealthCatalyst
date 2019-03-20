@@ -1,18 +1,20 @@
 # Health Catalyst - The People Search Sample Application
 People search sample application for Health Catalyst Senior Software Engineer using Dot Net Core Web API, Aurelia, and Entity Framework
 
+# **Try it [Live](https://healthcatalystpeoplesearch.azurewebsites.net/)**
+  
 # Usage Instructions:
 Clone Repository  
   
+navigate to the directory Dist and execute **HealthCatalystPeopleSearch.exe**  
+  
+or  
+
 :> .\\Dist\\HealthCatalystPeopleSearch.exe  
   
 or
 
 :> dotnet run --project .\\HealthCatalystPeopleSearch\\  
-  
-or  
-
-navigate to the directory Dist and execute **HealthCatalystPeopleSearch.exe**
   
 Then open your web browser and navigate to http://localhost:5000  
   
@@ -31,6 +33,7 @@ Development took place in VS2019 Community Preview, should be backward compatibl
   
 # Deployment Instructions:
 :\\> dotnet publish -c release -r win10-x64  
+Configure envsettings.json in the publish directory to set the environment to 'Production'
 
 # Business Requirements
 
