@@ -16,13 +16,15 @@ navigate to the directory Dist and execute **HealthCatalystPeopleSearch.exe**
   
 Then open your web browser and navigate to http://localhost:5000  
   
-Notes:  
+**Notes**:  
   
 Please ensure that cloning the repository, then running it directly (without any additional setup steps) will start the app properly.
 
 The requirement that the app be immediately runable after cloning the repository without any additional setup steps together with the requirement that an ORM be used resulted in needing to use an in memory database for the default ORM configuration, as I could not be confident SQL Server would be installed on the end users system and it cannot be bundled into a single executable. This configuration can be changed in Startup.cs by setting useInMemoryDb = false.  
   
 While using the in memory database changes will not be persisted from one application instance to another.  
+  
+I paid particular attention to preserving a good git history. As such, there are [!pull requests](https://github.com/vanderstack/VanderStackHealthCatalyst/pulls?q=is%3Apr+is%3Aclosed) and a clean commit log to view how I built each feature step by step, in line with what a normal agile story driven sprint development cycle would be like.  
   
 Development took place in VS2019 Community Preview, should be backward compatible with VS2017  
   
