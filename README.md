@@ -6,11 +6,11 @@ People search sample application for Health Catalyst Senior Software Engineer us
 # Usage Instructions:
 Clone Repository  
   
-navigate to the directory Dist and execute **HealthCatalystPeopleSearch.exe**  
+navigate to the directory Dist then to win10-x64 and execute **HealthCatalystPeopleSearch.exe**  
   
 or  
 
-:> .\\Dist\\HealthCatalystPeopleSearch.exe  
+:> .\\Dist\\win10-x64\\HealthCatalystPeopleSearch.exe  
   
 or
 
